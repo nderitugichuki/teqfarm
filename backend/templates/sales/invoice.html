@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ document_type|default:"Invoice" }} {{ sale.invoice_number }}</title>
+  <style>
+    body { font-family: Arial, sans-serif; color: #17231b; margin: 40px; }
+    header { display: flex; justify-content: space-between; border-bottom: 2px solid #257a45; }
+    table { width: 100%; border-collapse: collapse; margin-top: 32px; }
+    th, td { padding: 12px; border-bottom: 1px solid #ddd; text-align: left; }
+    .total { text-align: right; margin-top: 24px; font-size: 1.25rem; }
+    @media print { .no-print { display: none; } body { margin: 0; } }
+  </style>
+</head>
+<body>
+  <button class="no-print" onclick="window.print()">Print invoice</button>
+  <header><h1>TeqFarm</h1><div><strong>{{ document_type|default:"Invoice" }}</strong><br>{{ sale.invoice_number }}</div></header>
+  <p><strong>Customer:</strong> {{ sale.customer.name }}<br><strong>Date:</strong> {{ sale.sale_date }}</p>
+  <table><thead><tr><th>Item</th><th>Quantity</th><th>Unit price</th><th>Total</th></tr></thead>
+  <tbody><tr><td>{{ sale.get_sale_type_display }}</td><td>{{ sale.quantity }} {{ sale.unit }}</td><td>{{ sale.unit_price }}</td><td>{{ sale.total_amount }}</td></tr></tbody></table>
+  <p class="total"><strong>Total: KES {{ sale.total_amount }}</strong><br>Paid: KES {{ sale.amount_paid }}<br>{{ sale.get_payment_status_display }}</p>
+</body>
+</html>
