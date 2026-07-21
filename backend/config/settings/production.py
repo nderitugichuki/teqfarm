@@ -46,7 +46,7 @@ LOGGING = {
     "disable_existing_loggers": False,
     "formatters": {
         "json": {
-            "format": '{"time":"{asctime}","level":"{levelname}","logger":"{name}","message":"{message}"}',
+            "format": '{{"time":"{asctime}","level":"{levelname}","logger":"{name}","message":"{message}"}}',
             "style": "{",
         }
     },
