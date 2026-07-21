@@ -1,5 +1,6 @@
 import os
 
+import django
 from django.core.management import call_command
 
 
@@ -7,6 +8,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.production")
 
 
 def main():
+    django.setup()
     call_command("render_bootstrap")
 
     port = os.getenv("PORT", "8000")
